@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<app version="1.61">
+  <name>GBA Link Cable Dumper</name>
+  <coder>FIX94</coder>
+  <contributors></contributors>
+  <version>1.61</version>
+  <release_date>20231225</release_date>
+  <no_ios_reload/>
+  <ahb_access/>
+  <short_description>GBA Link Dumper</short_description>
+  <long_description>GBA Link Cable Dumper
+Features:
+- Dump your saves, roms, BIOS.
+- Restore saves
+- Clear saves
+
+Requirements:
+- Gamecube Controller
+- GBA 
+- GBA to GC Link Cable
+  </long_description>
+</app>
