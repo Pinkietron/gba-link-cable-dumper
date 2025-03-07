@@ -20,14 +20,24 @@
 //safe si transfer delay in between calls
 #define SI_TRANS_DELAY 50
 
+
 extern u8 gba_mb_gba[];
-extern u32 gba_mb_gba_size;
+
+
+//extern u32 gba_mb_gba_size;
+
+/* 
+* bypasses whatever was going on with the 
+* external size var that was preventing compilation
+*/
+u32 gba_mb_gba_size = 60800;
+
 
 void printmain()
 {
 	printf("\x1b[2J");
 	printf("\x1b[37m");
-	printf("GBA Link Cable Dumper v1.6 by FIX94\n");
+	printf("GBA Link Cable Dumper v1.7 by Pinkietron Forked From v1.6 by FIX94\n");
 	printf("Save Support based on SendSave by Chishm\n");
 	printf("GBA BIOS Dumper by Dark Fader\n \n");
 }

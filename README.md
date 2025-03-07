@@ -1,5 +1,5 @@
 # GBA Link Cable Dumper
-A GC and Wii Homebrew App to get GBA BIOS, ROMs and saves via the GC GBA Link Cable.  
+A GC and Wii Homebrew App to get GBA BIOS, ROMs and saves via the GC GBA Link Cable by FIX94.  
 Save Support based on SendSave by Chishm.  
 GBA BIOS Dumper by Dark Fader.  
 
@@ -9,3 +9,22 @@ Make sure to plug in a GC Controller into Port 1 of your console and the GBA Lin
 Now Boot your GBA without a cart inserted, it should automatically boot into the dumper when connected. From there you can just follow the instructions on screen.  
 If your GBA resets when you get to the step of inserting a cart, try to boot your GBA with the cart already inserted and holding down start+select on the GBA bootup, this aborts the game launch and should allow the dumper to boot up from there.  
 The bin, gba and sav files dumped will be placed in a folder called "dumps" on your main device (SD Gecko on gamecube and SD/USB on Wii). Please note that dumping GBA ROMs can take a long time (32mb takes about 48 minutes) because of the cable protocol limitations, an estimation will be displayed on screen before you dump it as a reference.
+
+# Building
+Download and install the latest release of [devkitPro](https://github.com/devkitPro/installer/releases)
+
+Launch MSys2
+
+Clone the repository: `git clone https://github.com/Pinkietron/gba-link-cable-dumper.git`
+
+Navigate to the repository's directory `cd gba-link-cable-dumper`
+
+Run `build.bat`
+
+Output Files are:
+```
+linkcabledump_gc.elf
+linkcabledump_gc.dol
+linkcabledump_wii.elf
+linkcabledump_wii.dol
+```

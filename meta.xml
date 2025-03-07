@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<app version="1.6.2">
+<app version="1.7">
   <name>GBA Link Cable Dumper</name>
   <coder>FIX94</coder>
   <contributors></contributors>
-  <version>1.6.2</version>
+  <version>1.7</version>
   <release_date>20250306</release_date>
   <no_ios_reload/>
   <ahb_access/>
