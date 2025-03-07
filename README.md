@@ -19,7 +19,7 @@ Clone the repository: `git clone https://github.com/Pinkietron/gba-link-cable-du
 
 Navigate to the repository's directory `cd gba-link-cable-dumper`
 
-Run `build.bat`
+Run `./build.bat`
 
 Output Files are:
 ```
