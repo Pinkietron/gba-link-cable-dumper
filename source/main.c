@@ -20,26 +20,35 @@
 //safe si transfer delay in between calls
 #define SI_TRANS_DELAY 50
 
+//Color text testing - Pinkie
+#define RESET  "\x1B[0m"
+#define RED  "\x1B[31m"
+#define GRN  "\x1B[32m"
+#define YEL  "\x1B[33m"
+#define BLU  "\x1B[34m"
+#define MAG  "\x1B[35m"
+#define CYN  "\x1B[36m"
+#define WHT  "\x1B[37m"
+
 
 extern u8 gba_mb_gba[];
-
-
+//Ignore
 //extern u32 gba_mb_gba_size;
 
 /* 
 * bypasses whatever was going on with the 
-* external size var that was preventing compilation
+* external size var that was preventing compilation - Pinkie
 */
 u32 gba_mb_gba_size = 60800;
 
 
 void printmain()
 {
-	printf("\x1b[2J");
-	printf("\x1b[37m");
-	printf("GBA Link Cable Dumper v1.7 by Pinkietron Forked From v1.6 by FIX94\n");
-	printf("Save Support based on SendSave by Chishm\n");
-	printf("GBA BIOS Dumper by Dark Fader\n \n");
+	printf("\x1b[2J"); // Clears the screen? - Pinkie
+	printf("\x1b[37m"); // Sets all text color to white - Pinkie
+	printf("GBA Link Cable Dumper v1.7 by " MAG "Pinkietron " WHT "Forked From v1.6 by " BLU "FIX94\n" WHT);
+	printf("Save Support based on SendSave by " GRN "Chishm\n" WHT);
+	printf("GBA BIOS Dumper by " RED "Dark Fader\n \n" WHT);
 }
 
 u8 *resbuf,*cmdbuf;
@@ -231,13 +240,13 @@ int main(int argc, char *argv[])
 	if(!fatInitDefault())
 	{
 		printmain();
-		fatalError("ERROR: No usable device found to write dumped files to!");
+		fatalError(RED "ERROR: " WHT " No usable device found to write dumped files to!");
 	}
 	mkdir("/dumps", S_IREAD | S_IWRITE);
 	if(!dirExists("/dumps"))
 	{
 		printmain();
-		fatalError("ERROR: Could not create dumps folder, make sure you have a supported device connected!");
+		fatalError(RED "ERROR: " WHT " Could not create dumps folder, make sure you have a supported device connected!");
 	}
 	int i;
 	while(1)
@@ -313,8 +322,8 @@ int main(int argc, char *argv[])
 			while(1)
 			{
 				printmain();
-				printf("Press A once you have a GBA Game inserted.\n");
-				printf("Press Y to backup the GBA BIOS.\n \n");
+				printf("Press " GRN "A " WHT "once you have a GBA Game inserted.\n");
+				printf("Press " YEL "Y " WHT "to backup the GBA BIOS.\n \n");
 				PAD_ScanPads();
 				VIDEO_WaitVSync();
 				u32 btns = PAD_ButtonsDown(0);
@@ -334,7 +343,7 @@ int main(int argc, char *argv[])
 						send(0); //got savesize
 						if(gbasize == -1) 
 						{
-							warnError("ERROR: No (Valid) GBA Card inserted!\n");
+							warnError(RED "ERROR: " WHT " No (Valid) GBA Card inserted!\n");
 							continue;
 						}
 						//get rom header
@@ -359,13 +368,13 @@ int main(int argc, char *argv[])
 							(char*)(testdump+0xA0),(char*)(testdump+0xAC),(char*)(testdump+0xB0));
 						fixFName(savename+7); //fix name behind "/dumps/"
 						//let the user choose the option
-						printf("Press A to dump this game, it will take about %i minutes.\n",gbasize/1024/1024*3/2);
-						printf("Press B if you want to cancel dumping this game.\n");
+						printf("Press " GRN "A " WHT "to dump this game, it will take about %i minutes.\n",gbasize/1024/1024*3/2);
+						printf("Press " RED "B " WHT "if you want to cancel dumping this game.\n");
 						if(savesize > 0)
 						{
-							printf("Press Y to backup this save file.\n");
-							printf("Press X to restore this save file.\n");
-							printf("Press Z to clear the save file on the GBA Cartridge.\n\n");
+							printf("Press " YEL "Y " WHT " to backup this save file.\n");
+							printf("Press " BLU "X " WHT "to restore this save file.\n");
+							printf("Press " MAG "Z " WHT "to clear the save file on the GBA Cartridge.\n\n");
 						}
 						else
 							printf("\n");
@@ -410,7 +419,7 @@ int main(int argc, char *argv[])
 							{
 								fclose(f);
 								command = 0;
-								warnError("ERROR: Game already dumped!\n");
+								warnError(RED "ERROR: " WHT " Game already dumped!\n");
 							}
 						}
 						else if(command == 2)
@@ -420,7 +429,7 @@ int main(int argc, char *argv[])
 							{
 								fclose(f);
 								command = 0;
-								warnError("ERROR: Save already backed up!\n");
+								warnError(RED "ERROR: " WHT " Save already backed up!\n");
 							}
 						}
 						else if(command == 3)
@@ -434,7 +443,7 @@ int main(int argc, char *argv[])
 								if(readsize != savesize)
 								{
 									command = 0;
-									warnError("ERROR: Save has the wrong size, aborting restore!\n");
+									warnError(RED "ERROR: " WHT " Save has the wrong size, aborting restore!\n");
 								}
 								else
 								{
@@ -446,7 +455,7 @@ int main(int argc, char *argv[])
 							else
 							{
 								command = 0;
-								warnError("ERROR: No Save to restore!\n");
+								warnError(RED "ERROR: " WHT " No Save to restore!\n");
 							}
 						}
 						send(command);
@@ -461,7 +470,7 @@ int main(int argc, char *argv[])
 							createFile(gamename,gbasize);
 							FILE *f = fopen(gamename,"wb");
 							if(!f)
-								fatalError("ERROR: Could not create file! Exit...");
+								fatalError(RED "ERROR: " WHT " Could not create file! Exit...");
 							printf("Dumping...\n");
 							u32 bytes_read = 0;
 							while(gbasize > 0)
@@ -490,7 +499,7 @@ int main(int argc, char *argv[])
 							createFile(savename,savesize);
 							FILE *f = fopen(savename,"wb");
 							if(!f)
-								fatalError("ERROR: Could not create file! Exit...");
+								fatalError(RED "ERROR: " WHT " Could not create file! Exit...");
 							printf("Waiting for GBA\n");
 							VIDEO_WaitVSync();
 							u32 readval = 0;
@@ -534,7 +543,7 @@ int main(int argc, char *argv[])
 					if(f)
 					{
 						fclose(f);
-						warnError("ERROR: BIOS already backed up!\n");
+						warnError(RED "ERROR: " WHT "BIOS already backed up!\n");
 					}
 					else
 					{
@@ -543,7 +552,7 @@ int main(int argc, char *argv[])
 						createFile(biosname,0x4000);
 						f = fopen(biosname,"wb");
 						if(!f)
-							fatalError("ERROR: Could not create file! Exit...");
+							fatalError(RED "ERROR: " WHT "Could not create file! Exit...");
 						//send over bios dump command
 						send(5);
 						//the gba might still be in a loop itself
