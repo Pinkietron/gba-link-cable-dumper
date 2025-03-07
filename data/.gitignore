@@ -1,0 +1,5 @@
+# Ignore all files to allow the "empty" dir to be committed as it is needed when running build.bat
+*
+
+# Except the ignore
+!.gitignore
