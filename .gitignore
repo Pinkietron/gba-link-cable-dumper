@@ -12,6 +12,12 @@ gba/gba_mb.elf
 # Prerequisites
 *.d
 
+# Packages
+*.zip
+*.7z
+*.gz
+
+
 # Object files
 *.o
 *.ko
