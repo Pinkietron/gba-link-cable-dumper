@@ -8,6 +8,7 @@ build/
 data/gba_mb.gba
 gba/build/
 gba/gba_mb.elf
+versions/
 
 # Prerequisites
 *.d
